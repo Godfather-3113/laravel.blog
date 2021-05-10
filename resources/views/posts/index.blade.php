@@ -7,16 +7,14 @@
     <meta name="keywords" content="Blogger Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android  Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
-    <link href="public/assets/front/css/bootstrap.css" rel='stylesheet' type='text/css' />
+{{--    <link href="public/assets/front/css/bootstrap.css" rel='stylesheet' type='text/css' />--}}
 
     <link href='//fonts.googleapis.com/css?family=Open+Sans:700,700italic,800,300,300italic,400italic,400,600,600italic' rel='stylesheet' type='text/css'>
     <!--Custom-Theme-files-->
 
-    <link href="public/assets/front/css/style.css" rel='stylesheet' type='text/css' />
-    <script src="https://p.w3layouts.com/demos/blogger/web/js/jquery.min.js"> </script>
-    <!--/script-->
-    <script type="text/javascript" src="https://p.w3layouts.com/demos/blogger/web/js/move-top.js"></script>
-    <script type="text/javascript" src="https://p.w3layouts.com/demos/blogger/web/js/easing.js"></script>
+    <link href="{{ asset('public/assets/front/css/style.css') }}" rel='stylesheet' type='text/css' />
+    <script src="{{ asset('public/assets/front/js/jquery.min.js') }}"> </script>
+{{--    <script src="https://p.w3layouts.com/demos/blogger/web/js/jquery.min.js"> </script>--}}
 
 </head>
 <body>
@@ -73,6 +71,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <div class="col-md-9 main">
+        <script src="js/responsiveslides.min.js"></script>
+        <script>
+            // You can also use "$(window).load(function() {"
+            $(function () {
+                // Slideshow 4
+                $("#slider4").responsiveSlides({
+                    auto: true,
+                    pager:true,
+                    nav:true,
+                    speed: 500,
+                    namespace: "callbacks",
+                    before: function () {
+                        $('.events').append("<li>before event fired.</li>");
+                    },
+                    after: function () {
+                        $('.events').append("<li>after event fired.</li>");
+                    }
+                });
+
+            });
+        </script>
         <!--banner-section-->
         <div class="banner-section">
             <h3 class="tittle">General <i class="glyphicon glyphicon-picture"></i></h3>
@@ -95,6 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
                 <!--banner-->
+                <script type="text/javascript" src="https://p.w3layouts.com/demos/blogger/web/js/responsiveslides.min.js"></script>
                 <div class="clearfix"> </div>
                 <div class="b-bottom">
                     <h5 class="top"><a href="single.html">What turn out consetetur sadipscing elit</a></h5>
@@ -266,6 +286,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div id = "v-w3layouts"></div>
 
 <script  type="text/javascript"  src="{{ asset('public/assets/front/js/scripts.js') }}"></script>
-<script src="https://p.w3layouts.com/demos/blogger/web/js/responsiveslides.min.js"></script>
+
+{{--<script src="https://p.w3layouts.com/demos/blogger/web/js/jquery.min.js"> </script>--}}
+{{--<script type="text/javascript" src="https://p.w3layouts.com/demos/blogger/web/js/move-top.js"></script>--}}
+{{--<script type="text/javascript" src="https://p.w3layouts.com/demos/blogger/web/js/easing.js"></script>--}}
 </body>
 </html>

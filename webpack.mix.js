@@ -22,16 +22,16 @@ mix.styles([
 ], 'public/assets/admin/css/admin.css');
 
 mix.styles([
-    'resources/assets/front/css/style.css',
-    // 'resources/assets/front/css/font-awesome.min.css',
     'resources/assets/front/css/bootstrap.css',
+    'resources/assets/front/css/style.css',
+    'resources/assets/front/css/font-awesome.min.css',
 ], 'public/assets/front/css/style.css');
 
 mix.scripts([
-    'resources/assets/front/js/easing.js',
-    'resources/assets/front/js/jquery-3.6.0.js',
+    'resources/assets/front/js/jquery.min.js',
+    // 'resources/assets/front/js/responsiveslides.min.js',
     'resources/assets/front/js/move-top.js',
-    'resources/assets/front/js/responsiveslides.min.js',
+    'resources/assets/front/js/easing.js',
 ], 'public/assets/front/js/scripts.js');
 
 mix.scripts([
@@ -42,6 +42,9 @@ mix.scripts([
     'resources/assets/admin/js/demo.js',
 ], 'public/assets/admin/js/admin.js');
 
+mix.copyDirectory = function (resourcesAssetsAdminImg, publicAssetsAdminImg) {
+    
+}
 mix.copyDirectory('resources/assets/admin/img','public/assets/admin/img');
 mix.copyDirectory('resources/assets/front/img/','public/assets/front/img');
 mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts','public/assets/admin/webfonts');
