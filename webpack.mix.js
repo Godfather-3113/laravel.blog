@@ -20,6 +20,18 @@ mix.styles([
     'resources/assets/admin/css/ionicons.min.css',
     'public/assets/admin/ckeditor5/sample/styles.css',
 ], 'public/assets/admin/css/admin.css');
+mix.scripts([
+    'resources/assets/admin/plugins/jquery/jquery.min.js',
+    'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
+    'resources/assets/admin/plugins/select2/js/select2.full.js',
+    'resources/assets/admin/js/adminlte.min.js',
+    'resources/assets/admin/js/demo.js',
+], 'public/assets/admin/js/admin.js');
+mix.copyDirectory('resources/assets/admin/img','public/assets/admin/img');
+mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts','public/assets/admin/webfonts');
+mix.copy('resources/assets/admin/css/adminlte.min.css.map','public/assets/admin/css/adminlte.min.css.map');
+mix.copy('resources/assets/admin/js/adminlte.min.js.map','public/assets/admin/js/adminlte.min.js.map');
+
 
 mix.styles([
     'resources/assets/front/css/bootstrap.css',
@@ -29,26 +41,15 @@ mix.styles([
 
 mix.scripts([
     'resources/assets/front/js/jquery.min.js',
-    // 'resources/assets/front/js/responsiveslides.min.js',
+    'resources/assets/front/js/scripts.js',
     'resources/assets/front/js/move-top.js',
     'resources/assets/front/js/easing.js',
+    'resources/assets/front/js/responsiveslides.min.js',
 ], 'public/assets/front/js/scripts.js');
 
-mix.scripts([
-    'resources/assets/admin/plugins/jquery/jquery.min.js',
-    'resources/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js',
-    'resources/assets/admin/plugins/select2/js/select2.full.js',
-    'resources/assets/admin/js/adminlte.min.js',
-    'resources/assets/admin/js/demo.js',
-], 'public/assets/admin/js/admin.js');
-
 mix.copyDirectory = function (resourcesAssetsAdminImg, publicAssetsAdminImg) {
-    
 }
-mix.copyDirectory('resources/assets/admin/img','public/assets/admin/img');
 mix.copyDirectory('resources/assets/front/img/','public/assets/front/img');
-mix.copyDirectory('resources/assets/admin/plugins/fontawesome-free/webfonts','public/assets/admin/webfonts');
 mix.copyDirectory('resources/assets/front/plugins/fontawesome-free/webfonts','public/assets/front/fonts/');
 
-mix.copy('resources/assets/admin/css/adminlte.min.css.map','public/assets/admin/css/adminlte.min.css.map');
-mix.copy('resources/assets/admin/js/adminlte.min.js.map','public/assets/admin/js/adminlte.min.js.map');
+
