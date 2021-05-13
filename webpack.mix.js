@@ -17,7 +17,7 @@ mix.styles([
     'resources/assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.css',
     'resources/assets/admin/css/adminlte.min.css',
     'resources/assets/admin/css/blue.css',
-    'resources/assets/admin/css/ionicons.min.css',
+    'resources/assets/admin/css/adminlte.css',
     'public/assets/admin/ckeditor5/sample/styles.css',
 ], 'public/assets/admin/css/admin.css');
 mix.scripts([
@@ -36,6 +36,7 @@ mix.copy('resources/assets/admin/js/adminlte.min.js.map','public/assets/admin/js
 mix.styles([
     'resources/assets/front/css/bootstrap.css',
     'resources/assets/front/css/style.css',
+    'resources/assets/front/css/style1.css',
     'resources/assets/front/css/font-awesome.min.css',
 ], 'public/assets/front/css/style.css');
 
@@ -47,9 +48,7 @@ mix.scripts([
     'resources/assets/front/js/responsiveslides.min.js',
 ], 'public/assets/front/js/scripts.js');
 
-mix.copyDirectory = function (resourcesAssetsAdminImg, publicAssetsAdminImg) {
-}
-mix.copyDirectory('resources/assets/front/img/','public/assets/front/img');
+mix.copyDirectory('resources/assets/front/img','public/assets/front/img/');
 mix.copyDirectory('resources/assets/front/plugins/fontawesome-free/webfonts','public/assets/front/fonts/');
 
 
