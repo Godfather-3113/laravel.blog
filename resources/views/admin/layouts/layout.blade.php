@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="Ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="../../index3.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -287,36 +287,44 @@
 
 <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
 <script>
-    $('.nav-sidebar a').each(function(){
+    $('.nav-sidebar a').each(function () {
         let location = window.location.protocol + '//' + window.location.host + window.location.pathname;
         let link = this.href;
-        if(link == location){
+        if (link == location) {
             $(this).addClass('active');
             $(this).closest('.has-treeview').addClass('menu-open');
         }
     });
+
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
 </script>
-<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
-<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}" ></script>
-<script src="{{ asset('assets/admin/ckeditor5/build/ckeditor.js') }}" ></script>
+
+<script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/decoupled-document/ckeditor.js"></script>
 
 <script type="text/javascript">
-
     ClassicEditor
-        .create( document.querySelector( '#description' ), {
+        .create(document.querySelector('#content'), {
+            ckfinder: {
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+            },
+            image: {
+                // You need to configure the image toolbar, too, so it uses the new style buttons.
+                toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
 
-            toolbar: [ 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-        } )
-        .catch( function( error ) {
-            console.error( error );
-        } );
+                styles: [
+                    // This option is equal to a situation where no style is applied.
+                    'full',
 
-</script>
+                    // This represents an image aligned to the left.
+                    'alignLeft',
 
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#content' ), {
-
+                    // This represents an image aligned to the right.
+                    'alignRight'
+                ]
+            },
             toolbar: {
                 items: [
                     'heading',
@@ -327,35 +335,19 @@
                     'bulletedList',
                     'numberedList',
                     '|',
-                    'outdent',
                     'indent',
+                    'outdent',
+                    'alignment',
                     '|',
-                    'imageUpload',
                     'blockQuote',
                     'insertTable',
-                    'mediaEmbed',
                     'undo',
                     'redo',
                     'CKFinder',
-                    'comment',
-                    'fontColor',
-                    'fontBackgroundColor',
-                    'fontFamily',
-                    'highlight',
-                    'horizontalLine',
-                    'imageInsert',
-                    'fontSize'
+                    'mediaEmbed'
                 ]
             },
             language: 'ru',
-            image: {
-                toolbar: [
-                    'imageTextAlternative',
-                    'imageStyle:full',
-                    'imageStyle:side',
-                    'linkImage'
-                ]
-            },
             table: {
                 contentToolbar: [
                     'tableColumn',
@@ -363,29 +355,19 @@
                     'mergeTableCells'
                 ]
             },
-            licenseKey: '',
-            sidebar: {
-                container: document.querySelector( '.sidebar' )
-            },
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
 
-        } )
-        .then( editor => {
-            window.editor = editor;
-
-            // Learn more about users on https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/users.html.
-            editor.plugins.get( 'Users' ).addUser( { id: '0' } );
-            editor.plugins.get( 'Users' ).defineMe( '0' );
-
-
-
-
-        } )
-        .catch( error => {
-            console.error( 'Oops, something went wrong!' );
-            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-            console.warn( 'Build id: bgs8mlcau73u-2wzk17n3v518' );
-            console.error( error );
-        } );
+    ClassicEditor
+        .create(document.querySelector('#description'), {
+            toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo']
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
 </script>
+
 </body>
 </html>

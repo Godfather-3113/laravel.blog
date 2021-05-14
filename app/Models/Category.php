@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Category extends Model
 {
-    use HasFactory;
     use Sluggable;
+
     protected $fillable = ['title'];
 
     public function posts()
     {
-        $this->hasMany(Post::class);
+        return $this->hasMany(Post::class);
     }
 
     /**
@@ -22,7 +21,7 @@ class Category extends Model
      *
      * @return array
      */
-    public function sluggable(): array
+    public function sluggable()
     {
         return [
             'slug' => [
@@ -30,4 +29,5 @@ class Category extends Model
             ]
         ];
     }
+
 }

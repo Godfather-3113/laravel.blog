@@ -2,30 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+//use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $posts = Post::with('category','tags')->paginate(20);
+        $posts = Post::with('category', 'tags')->paginate(20);
         return view('admin.posts.index', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -38,7 +40,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -49,39 +51,29 @@ class PostController extends Controller
             'category_id' => 'required|integer',
             'thumbnail' => 'nullable|image',
         ]);
+
         $data = $request->all();
 
-        $data['thumbnail'] = Post::uploadimage($request);
+        $data['thumbnail'] = Post::uploadImage($request);
 
-        $post= Post::create($data);
+        $post = Post::create($data);
         $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Статья добавлена');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
         $post = Post::find($id);
         $categories = Category::pluck('title', 'id')->all();
         $tags = Tag::pluck('title', 'id')->all();
-        return view('admin.posts.edit',compact('categories','tags','post'));
+        return view('admin.posts.edit', compact('categories', 'tags', 'post'));
     }
 
     /**
@@ -89,7 +81,7 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -103,7 +95,10 @@ class PostController extends Controller
 
         $post = Post::find($id);
         $data = $request->all();
-        $data['thumbnail'] = Post::uploadimage($request,$post->thumbnail);
+
+        if ($file = Post::uploadImage($request, $post->thumbnail)) {
+            $data['thumbnail'] = $file;
+        }
 
         $post->update($data);
         $post->tags()->sync($request->tags);
@@ -115,7 +110,7 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -123,6 +118,6 @@ class PostController extends Controller
         $post->tags()->sync([]);
         Storage::delete($post->thumbnail);
         $post->delete();
-        return redirect()->route('posts.index')->with('success','Пост удален');
+        return redirect()->route('posts.index')->with('success', 'Статья удалена');
     }
 }
