@@ -50,8 +50,11 @@
                 {{--<span class="glyphicon glyphicon-lock form-control-feedback"></span>--}}
             </div>
             <div class="row">
-                <div class="col-xs-4 offset-8">
+                <div class="col-xs-4 offset-6">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+                </div>
+                <div class="col-xs-4 offset-6">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Registration</button>
                 </div>
                 <!-- /.col -->
             </div>

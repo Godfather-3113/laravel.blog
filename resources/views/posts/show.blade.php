@@ -1,22 +1,47 @@
 @extends('layouts.layout')
 
+@section('title', 'Blogger a Blogging Category ::' . $post->title)
+
 
 @section('content')
     <div class="banner-section">
 
-        <!---728x90--->
+        <ol class="breadcrumb hidden-xs-down">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">{{ $post->category->title }}</a></li>
+            <li class="breadcrumb-item active">{{ $post->title }}</li>
+        </ol>
 
 
-        <h3 class="tittle">Single Page <i class="glyphicon glyphicon-file"></i></h3>
+        <h3 class="tittle">{{ $post->title }} <i class="glyphicon glyphicon-file"></i></h3>
         <div class="single">
-            <img src="{{asset('public/assets/front/img')}}/3.jpg" class="img-responsive" alt="">
+            <img src="{{ $post->getImage() }} " class="img-responsive" alt="">
             <div class="b-bottom">
-                <h5 class="top"><a href="#">What turn out consetetur sadipscing elit</a></h5>
-                <p class="sub">Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since,Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum has been the industry's standard dummy text ever since Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                <p>On Aug 25 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>56 </a></p>
+                <h5 class="top"></h5>
+                <p class="sub">{!! $post->content !!}</p>
 
             </div>
         </div>
+        <div class="single-bottom">
+            <div class="single-middle">
+                <p>On {{ $post->getPostDate() }} <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>{{ $post->views }}</a></p>
+                <div class="clearfix"> </div>
+                <div class="blog-title-area">
+                    @if($post->tags->count())
+                        <div class="tag-cloud-single">
+                            <span>Tags</span>
+                            @foreach($post->tags as $tag)
+                                <small><a href="{{ route('tags.single',['slug'=>$tag->slug]) }}">{{ $tag->title }}</a></small>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+
+
         <div class="single-bottom">
             <div class="single-middle">
                 <ul class="social-share">
@@ -32,7 +57,7 @@
         </div>
 
         <!---728x90--->
-
+        @yield('main_content')
         <div class="response">
             <h4>Responses</h4>
             <div class="media response-info">
@@ -47,7 +72,7 @@
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul>
                         <li>Sep 21, 2015</li>
-                        <li><a href="single.html">Reply</a></li>
+                        <li><a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">Reply</a></li>
                     </ul>
                     <div class="media response-info">
                         <div class="media-left response-text-left">
@@ -61,7 +86,7 @@
                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <ul>
                                 <li>July 17, 2015</li>
-                                <li><a href="single.html">Reply</a></li>
+                                <li><a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">Reply</a></li>
                             </ul>
                         </div>
                         <div class="clearfix"> </div>
@@ -81,7 +106,7 @@
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul>
                         <li>Mar 28, 2015</li>
-                        <li><a href="single.html">Reply</a></li>
+                        <li><a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">Reply</a></li>
                     </ul>
                     <div class="media response-info">
                         <div class="media-left response-text-left">
@@ -95,7 +120,7 @@
                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             <ul>
                                 <li>Feb 19, 2015</li>
-                                <li><a href="single.html">Reply</a></li>
+                                <li><a href="{{ route('categories.single', ['slug' => $post->category->slug]) }}">Reply</a></li>
                             </ul>
                         </div>
                         <div class="clearfix"> </div>

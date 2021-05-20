@@ -1,5 +1,5 @@
 <!DOCTYPE html><!--
-	Copyright (c) 2014-2021, CKSource - Frederico Knabben. All rights reserved.
+	Copyright (c) 2014-2020, CKSource - Frederico Knabben. All rights reserved.
 	This file is licensed under the terms of the MIT License (see LICENSE.md).
 -->
 
@@ -89,7 +89,6 @@
 						<strong>the culture</strong> of languages varies substantially and the language a person speaks is an essential element of daily life.
 					</p>
 				</div>
-				<div class="sidebar"></div>
 			</div></div>
 		</div>
 	</main>
@@ -97,14 +96,13 @@
 		<p><a href="https://ckeditor.com/ckeditor-5/" target="_blank" rel="noopener">CKEditor 5</a>
 			– Rich text editor of tomorrow, available today
 		</p>
-		<p>Copyright © 2003-2021,
+		<p>Copyright © 2003-2020,
 			<a href="https://cksource.com/" target="_blank" rel="noopener">CKSource</a>
 			– Frederico Knabben. All rights reserved.
 		</p>
 	</footer>
 	<script src="../build/ckeditor.js"></script>
-	<script>
-        ClassicEditor
+	<script>ClassicEditor
 			.create( document.querySelector( '.editor' ), {
 				
 				toolbar: {
@@ -117,24 +115,16 @@
 						'bulletedList',
 						'numberedList',
 						'|',
-						'outdent',
 						'indent',
+						'outdent',
+						'alignment',
 						'|',
-						'imageUpload',
 						'blockQuote',
 						'insertTable',
-						'mediaEmbed',
 						'undo',
 						'redo',
 						'CKFinder',
-						'comment',
-						'fontColor',
-						'fontBackgroundColor',
-						'fontFamily',
-						'highlight',
-						'horizontalLine',
-						'imageInsert',
-						'fontSize'
+						'mediaEmbed'
 					]
 				},
 				language: 'ru',
@@ -142,8 +132,7 @@
 					toolbar: [
 						'imageTextAlternative',
 						'imageStyle:full',
-						'imageStyle:side',
-						'linkImage'
+						'imageStyle:side'
 					]
 				},
 				table: {
@@ -154,26 +143,19 @@
 					]
 				},
 				licenseKey: '',
-				sidebar: {
-				container: document.querySelector( '.sidebar' )
-			},
 				
 			} )
 			.then( editor => {
 				window.editor = editor;
-		
-				// Learn more about users on https://ckeditor.com/docs/ckeditor5/latest/features/collaboration/users.html.
-				editor.plugins.get( 'Users' ).addUser( { id: '0' } );
-				editor.plugins.get( 'Users' ).defineMe( '0' );
 		
 				
 				
 				
 			} )
 			.catch( error => {
-				console.error( 'Oops, something went wrong!' );
-				console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
-				console.warn( 'Build id: bgs8mlcau73u-2wzk17n3v518' );
+				console.error( 'Oops, something gone wrong!' );
+				console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
+				console.warn( 'Build id: ibkouadn85ro-p8eethwkms5z' );
 				console.error( error );
 			} );
 	</script>

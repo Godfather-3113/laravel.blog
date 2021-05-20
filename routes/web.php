@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 //})->name('home');
 
 Route::get('/','PostController@index')->name('home');
-Route::get('/article','PostController@show')->name('posts.single');
+Route::get('/article/{slug}','PostController@show')->name('posts.single');
+Route::get('/category/{slug}','CategoryController@show')->name('categories.single');
+Route::get('/tag/{slug}','TagController@show')->name('tags.single');
+//Route::get('/categories','CategoryController@index')->name('categories.show');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware' => 'admin'], function (){
     Route::get('/','MainController@index')->name('admin.index');
@@ -32,6 +35,9 @@ Route::group(['middleware'=>'guest'],function (){
     Route::post('/register','UserController@store')->name('register.store');
     Route::get('/login','UserController@loginForm')->name('login.create');
     Route::post('/login','UserController@login')->name('login');
+
+//    Route::get('/review', 'FirstController@review')->name('review');
+//    Route::post('/review/check', 'FirstController@review_check');
 });
 
     Route::get('/logout','UserController@logout')->name('logout')->middleware('auth');

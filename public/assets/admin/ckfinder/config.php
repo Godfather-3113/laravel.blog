@@ -10,6 +10,8 @@
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/debugging.html
 
 // Production
+use Illuminate\Support\Facades\Auth;
+
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
 ini_set('display_errors', 0);
 
@@ -26,19 +28,18 @@ $config = array();
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-    $app = require_once  $_SERVER['DOCUMENT_ROOT']. '/bootstrap/app.php';
-    $response = $app->make('Illuminate\Contracts\Http\Kernel')->handle(Illuminate\Http\Request::capture());
-    $cookie = $_COOKIE[$app['config']['session']['cookie']] ?? false;
-    if ($cookie) {
-        $id = $app['encrypter']->decrypt($cookie, false);
-        $session = $app['session']->driver();
-        $session->setId($id);
-        $session->start();
-    }
-//
+//    require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+//    $app = require_once  $_SERVER['DOCUMENT_ROOT']. '/bootstrap/app.php';
+//    $response = $app->make('Illuminate\Contracts\Http\Kernel')->handle(Illuminate\Http\Request::capture());
+//    $cookie = $_COOKIE[$app['config']['session']['cookie']] ?? false;
+//    if ($cookie) {
+//        $id = $app['encrypter']->decrypt($cookie, false);
+//        $session = $app['session']->driver();
+//        $session->setId($id);
+//        $session->start();
+//    }
 //    if (!$app['auth']->check() || !$app['auth']->user()->is_admin){
-//        header('HTTP/1.0 403 Forbidden');exit();
+//        header('HTTP/1.0 403 Forbidden'); exit();
 //    }
     return true;
 };
@@ -80,8 +81,8 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => '/public/ckfinder/userfiles/',
-//  'root'         => '', // Can be used to explicitly set the CKFinder user files directory.
+    'root'         => '/Volumes/BACKUPC-2/WebServer/www/laravel.blog/public/ckfinder/userfiles',
+    'baseUrl'      => '/userfiles/',
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',

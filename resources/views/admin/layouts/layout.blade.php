@@ -17,7 +17,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" data-enable-remember="true" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Home</a>
@@ -301,8 +301,8 @@
     });
 </script>
 
+<script src="{{ asset('assets/admin/ckeditor5/build/ckeditor.js') }}"></script>
 <script src="{{ asset('assets/admin/ckfinder/ckfinder.js') }}"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/decoupled-document/ckeditor.js"></script>
 
 <script type="text/javascript">
     ClassicEditor
